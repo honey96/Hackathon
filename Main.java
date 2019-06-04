@@ -4,10 +4,10 @@ import java.io.*;
 import java.util.*;
 import java.util.regex.*;
 
-public class Main {
+public class main {
     public static void main(String args[]) {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("test.dml"));
+            BufferedReader reader = new BufferedReader(new FileReader("//home//honey//input.dml"));
             String line;
             
             String pattern = "(.*?)\\s*\\((.*?)\\)\\s*(.*?);";
@@ -23,6 +23,9 @@ public class Main {
             ArrayList<String> lastArr;
             lastArr = new ArrayList<>();
             
+            
+            
+            int count=0;
             reader.readLine();
             line = reader.readLine();
             while (line != null && !line.equals("end")) {
@@ -31,26 +34,32 @@ public class Main {
                    firstArr.add(m.group(1));   //To capture 1st string
                    midArr.add(m.group(2));     //To capture within brackets
                    lastArr.add(m.group(3));    //To capture last string
-               }
+                   count+=1;
+                  
+                   
+            }
                line = reader.readLine();
             }
             
-            //Print 1st array-list
-            firstArr.stream().forEach((s) -> {
-                System.out.print(s + " ");
-            });
+            for(int i=0;i<firstArr.size();i++)  
+            {  
+             System.out.print(firstArr.get(i)+" ");     
+            }
+            
+            System.out.println();
+            for(int i=0;i<midArr.size();i++)  
+            {  
+             System.out.print(midArr.get(i)+" ");     
+            }
+            
             System.out.println();
             
-            //Print 2nd array-list
-            midArr.stream().forEach((s) -> {
-                System.out.print(s + " ");
-            });
-            System.out.println();
             
-            //Print 3rd array-list
-            lastArr.stream().forEach((s) -> {
-                System.out.print(s + " ");
-            });
+            for(int i=0;i<lastArr.size();i++)  
+            {  
+            	
+             System.out.print(lastArr.get(i)+" ");     
+            }  
             System.out.println();
         }
         catch(Exception e) {
