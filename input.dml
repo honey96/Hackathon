@@ -1,0 +1,8 @@
+record
+String ("|") First_name;
+String ("|") Last_name;
+Decimal ("|") Marks;
+Integer ("\n") Roll_no;
+end
+
+
