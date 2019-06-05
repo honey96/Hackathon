@@ -1,7 +1,7 @@
 record
 String ("|") First_name;
 String ("|") Last_name;
-Decimal ("|") Marks;
+Decimal ("?") Marks;
 Integer ("\n") Roll_no;
 end
 
