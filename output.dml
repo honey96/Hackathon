@@ -1,0 +1,3 @@
+record
+decimal ("\n") Total_marks
+end
