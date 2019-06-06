@@ -1,0 +1,59 @@
+package hackathon;
+import java.util.*;
+public class XFR {
+	private String xfrFunction;
+
+	public String getXfrFunction() {
+		return xfrFunction;
+	}
+
+	public void setXfrFunction(String xfrFunction) {
+		this.xfrFunction = xfrFunction;
+	}
+	public ArrayList<LinkedHashMap<String, String>> solve(String[] xfr,int i, ArrayList<LinkedHashMap<String, String>> outputDataList,ArrayList<LinkedHashMap<String, String>> inputDataList){
+
+		if(xfr[i].contains("reformat")||xfr[i].contains("rollup")||xfr[i].contains("join")) {
+			this.xfrFunction=xfr[i];
+			i++;
+			if(xfr[i].contains("begin"))
+				i++;
+			if(xfr[i].contains("out.*")&&(xfr[i].contains("in.*"))) {
+				i++;
+				LinkedHashMap<String,String> outputMap =new LinkedHashMap<String,String>();
+				while(!xfr[i].contains("end")) {
+					String outputVariableName=xfr[i].substring(xfr[i].indexOf(".")+1,xfr[i].indexOf(":"));
+					String outputTransformationFunction=xfr[i].substring(xfr[i].indexOf(":")+2,xfr[i].indexOf(";"));
+					outputMap.put(outputVariableName,outputTransformationFunction);
+					i++;
+				}
+				if(this.xfrFunction.contains("reformat"))
+					outputDataList=reformatAll(outputMap,outputDataList,inputDataList);
+				/*else if(this.xfrFunction.contains("rollup"))
+					outputDataList=rollup(outputMap,outputDataList,inputDataList);
+				else if(this.xfrFunction.contains("join"))
+					outputDataList=join(outputMap,outputDataList,inputDataList);*/
+			}
+		}
+		return outputDataList;
+	}
+	public ArrayList<LinkedHashMap<String, String>> reformatAll(LinkedHashMap<String,String> outputMap,ArrayList<LinkedHashMap<String, String>> outputDataList,ArrayList<LinkedHashMap<String, String>> inputDataList){
+		
+
+		OutputTransformation outputTransformObj =new OutputTransformation();
+		//ColumnName, <DataType> 
+		
+		Set<String> outpuMapkeySet=outputMap.keySet();
+		
+		
+		for(int i=0;i<inputDataList.size();i++) {
+			LinkedHashMap<String,String> row=inputDataList.get(i);
+			for(String key: outpuMapkeySet) {
+				outputTransformObj.setColumnDataType(outputMap.get(key).substring(0,outputMap.get(key).indexOf("_")));
+				outputTransformObj.setTransformation(outputMap.get(key).substring(outputMap.get(key).indexOf("_")+1,outputMap.get(key).indexOf("(")));
+				String columnName = key; 
+				String columnValue;
+			}
+		}		
+		return outputDataList;
+	}
+}
