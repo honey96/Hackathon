@@ -1,8 +1,8 @@
 record
+Integer ("|") id_no;
 String ("|") First_name;
 String ("|") Last_name;
-Decimal ("?") Marks;
-Integer ("\n") Roll_no;
+Decimal ("?") Physics;
+Decimal ("|") Chemistry;
+Decimal ("|") Maths;
 end
-
-
