@@ -1,3 +1,7 @@
 record
-decimal ("\n") Total_marks;
+Integer ("|") id_no;
+String ("|") First_name;
+String ("|") Last_name;
+Decimal ("|") Avg_marks;
 end
+
