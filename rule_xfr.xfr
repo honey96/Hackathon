@@ -1,5 +1,5 @@
 out:: rollup(in) =
 begin
   out.* :: in.*;
-  out.average :: avg(in.marks);
+  out.total_marks :: avg(in.marks);
 end;
